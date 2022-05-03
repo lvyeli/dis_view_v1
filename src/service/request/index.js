@@ -33,7 +33,6 @@ class LYRequest {
             background: 'rgba(0, 0, 0, 0.5)'
           })
         }
-        console.log('所有：请求成功拦截')
         return config
       },
       (err) => {

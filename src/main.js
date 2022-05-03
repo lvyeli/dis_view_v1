@@ -1,12 +1,19 @@
 import { createApp } from 'vue'
+import { globalRegister } from './global'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import lyRequest from './service'
 
-createApp(App).use(store).use(router).mount('#app')
-// let token =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NjQwMzAsImlkIjoiMTIzIn0.fQAFmH1DTdncY0dlLRo7OCwF9k3Gjo8ssVHbaChmOgo'
+import lyRequest from './service'
+import 'normalize.css'
+import './assets/css/index.less'
+const app = createApp(App)
+//注册element-icon
+app.use(globalRegister)
+app.use(store)
+app.use(router)
+app.mount('#app')
+
 lyRequest
   .get({
     url: '/index',

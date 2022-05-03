@@ -14,20 +14,15 @@ const lyRequest = new LYRequest({
         const hash = base64.encode(token)
         config.headers.Authorization = `Basic ${hash}`
       }
-      console.log('请求成功拦截')
-      console.log(config)
       return config
     },
     requestInterceptorCatch: (err) => {
-      console.log('请求失败拦截')
       return err
     },
     responseInterceptor: (res) => {
-      console.log('响应成功的拦截')
       return res
     },
     responseInterceptorCatch: (err) => {
-      console.log('响应失败的拦截')
       return err
     }
   }
