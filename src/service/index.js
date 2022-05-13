@@ -1,16 +1,16 @@
 //service统一出口
 import LYRequest from './request'
 import { BASE_URL, TIME_OUT } from './request/config'
+import localCache from '@/utils/cache'
 var base64 = require('base-64')
 const lyRequest = new LYRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
-      let token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NjQwMzAsImlkIjoiMTIzIn0.fQAFmH1DTdncY0dlLRo7OCwF9k3Gjo8ssVHbaChmOgo'
+      let token = localCache.getCache('token')
       if (token) {
-        token = token + ':'
+        token = `${token}:`
         const hash = base64.encode(token)
         config.headers.Authorization = `Basic ${hash}`
       }
@@ -20,7 +20,7 @@ const lyRequest = new LYRequest({
       return err
     },
     responseInterceptor: (res) => {
-      return res
+      return res.data
     },
     responseInterceptorCatch: (err) => {
       return err

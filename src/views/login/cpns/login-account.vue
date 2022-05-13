@@ -1,8 +1,8 @@
 <template>
   <div class="login-account">
     <el-form label-width="65px" :rules="rules" :model="account" ref="formRef">
-      <el-form-item label="账号" prop="name">
-        <el-input v-model="account.name" />
+      <el-form-item label="账号" prop="username">
+        <el-input v-model="account.username" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="account.password" show-password />
@@ -18,7 +18,7 @@ import { useStore } from 'vuex'
 import localCache from '@/utils/cache'
 const store = useStore()
 const account = reactive({
-  name: localCache.getCache('name') ?? '',
+  username: localCache.getCache('username') ?? '',
   password: localCache.getCache('password') ?? ''
 })
 const formRef = ref(null)
@@ -28,10 +28,10 @@ const loginAction = (isKeepPassword) => {
       //1.判断是否需要记住密码
       if (isKeepPassword) {
         //本地缓存
-        localCache.setCache('name', account.name)
+        localCache.setCache('username', account.username)
         localCache.setCache('password', account.password)
       } else {
-        localCache.deleteCache('name')
+        localCache.deleteCache('username')
         localCache.deleteCache('password')
       }
       //2.登录验证

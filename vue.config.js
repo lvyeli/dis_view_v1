@@ -18,6 +18,18 @@ module.exports = {
       Components({
         resolvers: [ElementPlusResolver()]
       })
-    ]
+    ],
+    //跨域配置
+    devServer: {
+      proxy: {
+        '^/api': {
+          target: 'http://10.101.9.150:8800',
+          pathRewrite: {
+            '^/api': ''
+          },
+          changeOrigin: true
+        }
+      }
+    }
   }
 }
