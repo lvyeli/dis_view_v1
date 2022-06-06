@@ -8,6 +8,7 @@
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
+              v-if="!item.isHidden"
               :label="item.label"
               :rules="item.rules"
               :style="itemStyle"
@@ -38,6 +39,7 @@
                 <el-date-picker
                   v-bind="item.otherOptions"
                   v-model="formData[`${item.field}`]"
+                  value-format="YYYY-MM-DD"
                 ></el-date-picker>
               </template>
             </el-form-item>
@@ -87,10 +89,20 @@ const props = defineProps({
         xs: 24
       }
     }
+  },
+  isHidden: {
+    type: Boolean,
+    default: false
   }
 })
 const emits = defineEmits(['update:modelValue'])
 const formData = ref({ ...props.modelValue })
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    formData.value = { ...newValue }
+  }
+)
 watch(
   formData,
   (newValue) => {

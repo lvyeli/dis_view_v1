@@ -9,7 +9,10 @@ import {
   DataAnalysis,
   View,
   Coordinate,
-  Refresh
+  Refresh,
+  Edit,
+  Delete,
+  Top
 } from '@element-plus/icons-vue'
 const components = [
   Avatar,
@@ -21,7 +24,10 @@ const components = [
   DataAnalysis,
   View,
   Coordinate,
-  Refresh
+  Refresh,
+  Edit,
+  Delete,
+  Top
 ]
 export default function (app) {
   for (const component of components) {

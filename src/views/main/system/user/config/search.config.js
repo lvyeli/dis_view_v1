@@ -1,15 +1,9 @@
-export const formConfig = {
+export const searchFormConfig = {
   labelWidth: '120px',
   itemStyle: {
     padding: '20px 60px'
   },
   formItems: [
-    {
-      field: 'password',
-      type: 'password',
-      label: 'mima',
-      placeholder: '请输入用户名'
-    },
     {
       field: 'name',
       type: 'input',
@@ -17,17 +11,17 @@ export const formConfig = {
       placeholder: '请输入用户名'
     },
     {
-      field: 'sport',
+      field: 'role',
       type: 'select',
-      label: '用户名',
-      placeholder: '请输入用户名',
+      label: '角色',
+      placeholder: '请输入角色',
       //针对select
       options: [
-        { title: '1', value: 'ba', label: '12' },
+        { title: '管理员', value: '1', label: '1' },
         {
-          title: '2',
-          value: 'bas',
-          label: '123'
+          title: '用户',
+          value: '0',
+          label: '0'
         }
       ]
     },

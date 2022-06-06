@@ -8,9 +8,11 @@
         <el-aside :width="isFold ? '60px' : '210px'" class="aside">
           <nav-menu :isCollapse="isFold"></nav-menu>
         </el-aside>
-        <el-main class="main">
+        <el-main>
           <nav-header @foldChange="handleFoldChange"></nav-header>
-          <router-view></router-view>
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -22,6 +24,7 @@ import { ref } from 'vue'
 import NavMenu from '@/components/nav-menu'
 import NavBar from '@/components/nav-bar'
 import NavHeader from '@/components/nav-header'
+import BackTop from '@/base-ui/backtop'
 const isFold = ref(false)
 const handleFoldChange = (isCollapse) => {
   isFold.value = isCollapse
@@ -29,8 +32,14 @@ const handleFoldChange = (isCollapse) => {
 </script>
 
 <style lang="less" scoped>
-.main,
-.page {
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.main .page {
   width: 100%;
   height: 100%;
 }
@@ -44,7 +53,17 @@ const handleFoldChange = (isCollapse) => {
   width: 100%;
   height: calc(100% - 89px);
 }
-.main {
+.el-aside {
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 200px;
+  text-align: left;
+  cursor: pointer;
+  transition: width 0.3s linear;
+}
+.el-main {
   padding: 0;
+  height: 100%;
+  text-align: center;
 }
 </style>
